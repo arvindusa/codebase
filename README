@@ -1,0 +1,8 @@
+C++ Animal Class - virtual method render -> Animal
+Child class Tiger - virtual method render -> Tiger
+Tiger kitty;
+Animal *beast=&kitty;
+beast->render();?
+Animal beast = kitty?
+//Copy constructor ?
+
