@@ -1,0 +1,328 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Process Mix of Items - Mathworks C++ Assignment
+\end_layout
+
+\begin_layout Author
+Vaidehi Venkatesan
+\end_layout
+
+\begin_layout Date
+27 March 2013
+\end_layout
+
+\begin_layout Abstract
+process_mix_of_items code contains a software challenge.
+ The challenge is to apply C++ object oriented software development skills.The
+ zip file process_mix_of_items.zip contains source code for a program that
+ processes a mixture of items.
+ The program is written using C style.
+ This write up document discusses the possible object oriented design strategies
+ considered and implemented for this challenge alongside giving a comparison
+ of the solutions suggested.
+ 
+\end_layout
+
+\begin_layout Section
+Overall Idea 
+\end_layout
+
+\begin_layout Standard
+This document briefs the four methods / design strategies implemented to
+ apply object oriented design strategies in the given challenge.
+ 
+\end_layout
+
+\begin_layout Enumerate
+array data that holds objects of type void*
+\end_layout
+
+\begin_layout Enumerate
+data is filled with objects of three kinds - struct phoneExtension, houseNumber,
+ age.
+\end_layout
+
+\begin_layout Enumerate
+each struct has a member variable - kind apart from struct specific member
+ variables like area code, seven digit number etc.
+ 
+\end_layout
+
+\begin_layout Enumerate
+data is printed out by a function called show_data.
+ This function uses reinterpret_cast to cast the void* object to the object
+ kind.
+ Switching on the object kind, the object is once againt reinterpret_cast
+ to appropriate struct type to print information of the member variables.
+ 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Underpinning requirement of the code is to have a heterogenous container
+ which can hold objects of different data types namely struct phoneExtension,
+ struct age, struct houseNumber.
+ 
+\end_layout
+
+\begin_layout Standard
+A good object oriented re-design of this code, should also have the following
+ principles as foundation.
+\end_layout
+
+\begin_layout Enumerate
+Open-closed principle - entities should be open for extension and closed
+ for modification.
+ In this case, the heterogenous container should be open for accomodating
+ new datatypes but closed in terms of its functionalities
+\end_layout
+
+\begin_layout Enumerate
+Other principles defined in SOLID - Single responsibility, Liskov substitution,
+ Interface segregation, Dependency Inversion should also be kept in mind
+ while coming up with a good design.
+ 
+\end_layout
+
+\begin_layout Enumerate
+In order to design with SOLID principles, appropriate design patterns must
+ be employed which can simulateneously achieve the goal to designing a heterogen
+ous C++ container.
+ 
+\end_layout
+
+\begin_layout Section
+Solution strategies
+\end_layout
+
+\begin_layout Standard
+The four different ways of coming up with object oriented design for this
+ problem can be seen a incremental approaches from one to the next.
+ A brief description of the four approaches is given below:
+\end_layout
+
+\begin_layout Enumerate
+unionApproach - This approach succeeds in mitigating the use of void* and
+ reinterpret_cast to represent heterogenous data.
+ It uses a vector of union objects containing the information given by the
+ three structs in the original design.
+ The method that prints the information for every union object is overloaded
+ for every given type.
+ 
+\end_layout
+
+\begin_layout Enumerate
+itemWrapperApproach - This approach makes use of the fact that all input
+ structs in design have unsigned int or unsigned long data.
+ It defines Item as an object which has type and vector of unsigned longs
+ as member variables.
+ Item has other member functions for printing the relevant data type.
+ It uses overloaded constructors to create the right kind of objects.
+ Thus, encapsulation and object oriented design is handled in this design.
+\end_layout
+
+\begin_layout Enumerate
+inheritenceApproach - This approach uses inheritence and polymorphism to
+ represent given data.
+ All items derive from an abstract base class.
+ The container of items contain pointer to base class.
+ Using virtual member functions, appropriate data is shown.
+ 
+\end_layout
+
+\begin_layout Enumerate
+chameleonApproach - This approach uses template member functions which internall
+y create and maintain a static map of <Item*, type> object.
+ The class is not templated while the member functions which set and get
+ value are templated.
+ Hence ,a vector<Item *> is maintained where each Item* can point to object
+ of any data type.
+ This leverages the maximum used of object oriented design in creating a
+ heterogenous container.
+ 
+\end_layout
+
+\begin_layout Section
+Class Diagrams
+\end_layout
+
+\begin_layout Standard
+The following class diagrams are drawn to the best approximation using http://ww
+w.creately.com
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UnionApproach.png
+	scale 40
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+UnionApproach Class Diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ItemWrapper.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+ItemWrapper Class Diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Inheritence.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+InheritenceApproach Class Diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

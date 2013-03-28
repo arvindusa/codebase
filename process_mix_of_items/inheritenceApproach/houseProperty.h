@@ -10,7 +10,7 @@ namespace InheritenceApproach{
 			~House();
 			void print(int index) const;
 		private:
-			unsigned int d_houseNumber;
+			unsigned long d_houseNumber;
 	};
 }
 #endif

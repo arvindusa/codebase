@@ -3,7 +3,7 @@
 namespace InheritenceApproach{
 	class Property{
 		public:
-			~Property();
+			virtual ~Property();
 			virtual void print(int index) const=0;
 	};
 }
