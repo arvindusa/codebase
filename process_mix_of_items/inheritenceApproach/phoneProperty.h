@@ -6,10 +6,10 @@
 namespace InheritenceApproach{
 	class Phone:public Property{
 		public:
-			Phone(int areaCode, int sevenDigitNumber):Property(),
+			Phone(int areaCode, int sevenDigitNumber):
 					d_areaCode(areaCode), 
 					d_sevenDigitNumber(sevenDigitNumber){}
-			~Phone();
+			~Phone(){};
 			void print(int index) const;
 		private:
 			unsigned int d_areaCode;

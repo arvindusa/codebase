@@ -6,9 +6,8 @@
 namespace InheritenceApproach{
 	class Age:public Property{
 		public:
-			Age(int age):Property(),
-				d_age(age){}
-			~Age();
+			Age(int age):d_age(age){}
+			~Age(){};
 			void print(int index) const;
 		private:
 			unsigned int d_age;	

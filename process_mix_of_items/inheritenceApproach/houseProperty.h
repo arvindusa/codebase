@@ -6,8 +6,8 @@
 namespace InheritenceApproach{
 	class House:public Property{
 		public:
-			House(int houseNumber):Property(),d_houseNumber(houseNumber){}
-			~House();
+			House(int houseNumber):d_houseNumber(houseNumber){}
+			~House(){};
 			void print(int index) const;
 		private:
 			unsigned long d_houseNumber;

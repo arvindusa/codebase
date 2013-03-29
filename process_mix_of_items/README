@@ -1,0 +1,38 @@
+PROCESS_MIX_OF_ITEMS CHALLENGE
+------------------------------
+Folder has four subfolder each exploring an approach 
+to solve the problem
+Subdirectories of Interest are:
+./unionApproach
+./itemWrapperApproach
+./inheritenceApproach
+./chameleonApproach
+
+Each folder contains a makefile
+to run in linux:
+$>make clean
+$>make
+
+to use VSC++:
+please load the folder as a project in VSC++ and 
+build/generate appropriate proj and sln files
+
+
+./givenSourceCode-contains documents/code given for the 
+challenge
+
+./Docs-contains design document "writeup.pdf" which explains
+the design decisions taken in this challenge alongside
+explaining the pros and cons of each approach
+
+./SupportDocs-contains all class diagrams,writeup lyx files
+
+ASSUMPTIONS:
+The part of the given source code where a prompt waits for
+user to end the program is assumed to be used for interaction
+and is not included in the design challenge.
+
+The solution approaches focus on designing and implementing a 
+heterogenous container involving Object Oriented design principles.
+
+
