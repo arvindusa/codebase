@@ -13,6 +13,13 @@ to run in linux:
 $>make clean
 $>make
 
+For each approach the run the following command after make.
+1. UnionApproach: 		$> ./unionApproach
+2. ItemWrapperApproach:		$> ./itemWrapper
+3. InheritenceApproach:		$> ./inheritItems
+4. ChameleonApproach:		$> ./chameleon
+
+
 to use VSC++:
 please load the folder as a project in VSC++ and 
 build/generate appropriate proj and sln files
